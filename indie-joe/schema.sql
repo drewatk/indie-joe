@@ -5,7 +5,11 @@ create table videos (
   description text not null,
   youtube_id text,
   views integer default 0,
-  genre text not null
+  action integer default 0,
+  comedy integer default 0,
+  drama integer default 0,
+  horror integer default 0,
+  documentary integer default 0
 );
 
 drop table if exists playlists;
