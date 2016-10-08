@@ -3,7 +3,7 @@
   <h1>Search for {{ query }}</h1>
   {% for video in results %}
     <p>
-      {{ video.title }}
+      <a href="{{ url_for('video', id=video.id)}}">{{ video.title }}</a>
     </p>
   {% endfor %}
 {% endblock %}
