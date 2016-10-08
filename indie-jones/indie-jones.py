@@ -18,13 +18,15 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+# Routes
+
 @app.route('/video/<id>')
 def video(id):
     db = get_db()
     cur = db.execute('select * from videos where id = ?', id)
     video = cur.fetchone()
     print video
-    return render_template('video.html', id=id, description=video['description'], title=video['title'])
+    return render_template('video.html', video=video)
 
 @app.route('/videos/add', methods=['POST'])
 def add_video():
@@ -40,7 +42,7 @@ def search_videos():
     results = cur.fetchall()
     # TODO: Render the search results page
 
-
+# Database Functions
 
 def connect_db():
     """Connects to the specific database."""
@@ -68,6 +70,7 @@ def init_db():
         db.cursor().executescript(f.read())
     db.commit()
 
+# Command line commands
 @app.cli.command('initdb')
 def initdb_command():
     """Initializes the database."""
