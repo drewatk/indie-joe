@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
   <h1>Search for {{ query }}</h1>
+  {% if results|length < 1 %}
+    <p>
+      There's nothing here. Try Again.
+    </p>
+  {% endif %}
   {% for video in results %}
     <p>
       <a href="{{ url_for('video', video_id=video.id)}}">{{ video.title }}</a>

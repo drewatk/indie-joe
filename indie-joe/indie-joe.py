@@ -52,11 +52,12 @@ def playlists(playlist_id):
     curr = db.execute('select * from playlists where id = ?', playlist_id)
 
     playlist = curr.fetchone()
-    video_ids = playlist['list'].split(' ')
     videos = []
-    for video_id in video_ids:
-        curr = db.execute('select * from videos where id = ?', video_id)
-        videos.append(curr.fetchone())
+    if playlist:
+        video_ids = playlist['list'].split(' ')
+        for video_id in video_ids:
+            curr = db.execute('select * from videos where id = ?', video_id)
+            videos.append(curr.fetchone())
 
     if request.method == 'GET':
         return render_template('playlists.html', playlist=playlist, videos=videos)
