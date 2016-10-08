@@ -1,6 +1,7 @@
 # all the imports
 import os
 import sqlite3
+import json
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 
@@ -16,6 +17,30 @@ app.config.update(dict(
     PASSWORD='default'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+
+@app.route('/video/<id>')
+def video(id):
+    db = get_db()
+    cur = db.execute('select * from videos where id = ?', id)
+    video = cur.fetchone()
+    print video
+    return render_template('video.html', id=id, description=video['description'], title=video['title'])
+
+@app.route('/videos/add', methods=['POST'])
+def add_video():
+    db = get_db()
+    db.execute('insert into videos (title, description) values (?, ?)', [request.form['title'], request.form['text']])
+    db.commit()
+    flash('New video was successfully added')
+
+@app.route('/videos/serch', methods=['POST'])
+def search_videos():
+    db = get_db()
+    cur = db.execute('select * from videos where title like "%?%" or description like "%?%"', [request.form['query'], request.form['query']])
+    results = cur.fetchall()
+    # TODO: Render the search results page
+
+
 
 def connect_db():
     """Connects to the specific database."""
