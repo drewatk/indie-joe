@@ -4,6 +4,7 @@ import sqlite3
 import json
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
+from recalgo import RecommendationAlgorithm
 
 # create our little application :)
 app = Flask(__name__)
@@ -21,6 +22,21 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 # Routes
 @app.route('/')
 def index():
+    db = get_db()
+    cur = db.execute('select * from videos')
+    videos = cur.fetchall()
+    movies = []
+    for video in videos:
+        movie = []
+        for field in video:
+            movie.append(field)
+        movies.append(movie)
+    # print movies[0]
+    user = [12 , 23, 123, 12, 120, 213]
+    ra = RecommendationAlgorithm(user, movies)
+
+    for x in ra.recalgo():
+        print x
     return render_template('index.html')
 
 @app.route('/video/<video_id>')
@@ -42,22 +58,22 @@ def add_video():
 def search_videos():
     db = get_db()
     search_string = '%' + request.args['query'] + '%'
-    cur = db.execute('select * from videos where title like ? or description like ? or genre like ?', [search_string, search_string, search_string])
+    cur = db.execute('select * from videos where title like ? or description like ?', [search_string, search_string])
     results = cur.fetchall()
     return render_template('search.html', query=request.args['query'], results=results)
 
 @app.route('/playlists/<playlist_id>', methods=['POST', 'GET'])
 def playlists(playlist_id):
     db = get_db()
-    curr = db.execute('select * from playlists where id = ?', playlist_id)
+    cur = db.execute('select * from playlists where id = ?', playlist_id)
 
-    playlist = curr.fetchone()
+    playlist = cur.fetchone()
     videos = []
     if playlist:
         video_ids = playlist['list'].split(' ')
         for video_id in video_ids:
-            curr = db.execute('select * from videos where id = ?', video_id)
-            videos.append(curr.fetchone())
+            cur = db.execute('select * from videos where id = ?', video_id)
+            videos.append(cur.fetchone())
 
     if request.method == 'GET':
         return render_template('playlists.html', playlist=playlist, videos=videos)
@@ -69,8 +85,8 @@ def playlists(playlist_id):
 def genre(genre_name):
     db = get_db()
     # this is certanly the wrong way to do it and probably introduces a SQL injection flaw
-    curr = db.execute('select * from videos where ' +  genre_name + ' = 1')
-    videos = curr.fetchall()
+    cur = db.execute('select * from videos where ' +  genre_name + ' = 1')
+    videos = cur.fetchall()
     print videos
     return render_template('playlists.html', playlist={ 'title':genre_name }, videos=videos)
 
