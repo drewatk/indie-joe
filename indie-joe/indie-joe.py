@@ -65,6 +65,14 @@ def playlists(playlist_id):
         # TODO Return list of videos in JSON format for home page
         pass
 
+@app.route('/genre/<genre_name>')
+def genre(genre_name):
+    db = get_db()
+    # this is certanly the wrong way to do it and probably introduces a SQL injection flaw
+    curr = db.execute('select * from videos where ' +  genre_name + ' = 1')
+    videos = curr.fetchall()
+    print videos
+    return render_template('playlists.html', playlist={ 'title':genre_name }, videos=videos)
 
 
 # Database Functions
