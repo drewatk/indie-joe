@@ -19,6 +19,9 @@ app.config.update(dict(
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 # Routes
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/video/<id>')
 def video(id):
@@ -28,18 +31,20 @@ def video(id):
     print video
     return render_template('video.html', video=video)
 
-@app.route('/videos/add', methods=['POST'])
+@app.route('/video/add', methods=['POST'])
 def add_video():
     db = get_db()
     db.execute('insert into videos (title, description) values (?, ?)', [request.form['title'], request.form['text']])
     db.commit()
     flash('New video was successfully added')
 
-@app.route('/videos/serch', methods=['POST'])
+@app.route('/search', methods=['POST'])
 def search_videos():
     db = get_db()
-    cur = db.execute('select * from videos where title like "%?%" or description like "%?%"', [request.form['query'], request.form['query']])
+    search_string = '%' + request.form['query'] + '%'
+    cur = db.execute('select * from videos where title like ? or description like ? or genre like ?', [search_string, search_string, search_string])
     results = cur.fetchall()
+    return str(results[0]['id'])
     # TODO: Render the search results page
 
 # Database Functions
