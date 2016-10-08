@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h1>Search for {{ query }}</h1>
-  {% for video in results %}
+  <h1>Playlist: {{ playlist.title }}</h1>
+  {% for video in videos %}
     <p>
       <a href="{{ url_for('video', video_id=video.id)}}">{{ video.title }}</a>
     </p>

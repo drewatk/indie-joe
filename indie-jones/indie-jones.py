@@ -23,10 +23,10 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 def index():
     return render_template('index.html')
 
-@app.route('/video/<id>')
-def video(id):
+@app.route('/video/<video_id>')
+def video(video_id):
     db = get_db()
-    cur = db.execute('select * from videos where id = ?', id)
+    cur = db.execute('select * from videos where id = ?', video_id)
     video = cur.fetchone()
     print video
     return render_template('video.html', video=video)
@@ -45,6 +45,26 @@ def search_videos():
     cur = db.execute('select * from videos where title like ? or description like ? or genre like ?', [search_string, search_string, search_string])
     results = cur.fetchall()
     return render_template('search.html', query=request.args['query'], results=results)
+
+@app.route('/playlists/<playlist_id>', methods=['POST', 'GET'])
+def playlists(playlist_id):
+    db = get_db()
+    curr = db.execute('select * from playlists where id = ?', playlist_id)
+
+    playlist = curr.fetchone()
+    video_ids = playlist['list'].split(' ')
+    videos = []
+    for video_id in video_ids:
+        curr = db.execute('select * from videos where id = ?', video_id)
+        videos.append(curr.fetchone())
+
+    if request.method == 'GET':
+        return render_template('playlists.html', playlist=playlist, videos=videos)
+    else:
+        # TODO Return list of videos in JSON format for home page
+        pass
+
+
 
 # Database Functions
 
