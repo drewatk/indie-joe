@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
   <h1>Home Page</h1>
-  <input id="search" placeholder="Movies..."/>
-  <button id="search_btn">Search</button>
+  <form action="/search" method="GET">
+    <input id="search" placeholder="Movies..."/>
+    <button name="query" type="submit" id="search_btn">Search</button>
+  </form>
 {% endblock %}

@@ -38,14 +38,13 @@ def add_video():
     db.commit()
     flash('New video was successfully added')
 
-@app.route('/search', methods=['POST'])
+@app.route('/search')
 def search_videos():
     db = get_db()
-    search_string = '%' + request.form['query'] + '%'
+    search_string = '%' + request.args['query'] + '%'
     cur = db.execute('select * from videos where title like ? or description like ? or genre like ?', [search_string, search_string, search_string])
     results = cur.fetchall()
-    return str(results[0]['id'])
-    # TODO: Render the search results page
+    return render_template('search.html', query=request.args['query'], results=results)
 
 # Database Functions
 

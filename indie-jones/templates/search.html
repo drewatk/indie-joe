@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h1>Search for {{ query }}</h1>
+  {% for video in results %}
+    <p>
+      {{ video.title }}
+    </p>
+  {% endfor %}
+{% endblock %}
