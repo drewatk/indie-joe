@@ -19,9 +19,11 @@ create table playlists (
   list text not null
 );
 
-insert into videos (title, description, youtube_id, horror, views) values ("I made a movie 1", "It's great", "MMInxg1Omv4", 1, 123);
-insert into videos (title, description, youtube_id, comedy, views) values ("I made a movie 2", "It's great", "MMInxg1Omv4", 1, 652513242);
-insert into videos (title, description, youtube_id, drama, views) values ("I made a movie 3", "It's great", "MMInxg1Omv4", 1, 1231);
-insert into videos (title, description, youtube_id, drama, views) values ("I made a movie 4", "It's great", "MMInxg1Omv4", 1, 653);
+insert into videos (title, description, youtube_id, horror, views) values ("Show Me", "Vince Burnham, a local detective, comes home only to find his wife shot down. What starts out as a simple murder case soon evolves into something much deeper......
+", "T4jTooUTt-U", 1, 1296);
+insert into videos (title, description, youtube_id, drama, views) values ("Bland Brandish", "An homage to old mafia movies, this film delivers a compelling narrative while focusing on the tension between two rival gangs.
+", "E6NlDAe1HXs", 1, 288);
+insert into videos (title, description, youtube_id, action, drama, views) values ("DARTH MAUL: Apprentice", "A Star Wars Fan-Film", "Djo_91jN3Pk", 1, 1, 10501790);
+insert into videos (title, description, youtube_id, horror, views) values ("Killer Surprise", "This is a video that I made as an application video for film school. It had to be 3 minutes or less and I chose to make a thriller/horror movie.", "NVfsk-1ZwJM", 1, 28616);
 
 insert into playlists (title, list) values ("Editors choice", "1 2 3 4");
