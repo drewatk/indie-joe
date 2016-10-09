@@ -19,6 +19,14 @@
   max-height: 15px;
 }
 
+.center-carousel {
+    padding: 10px;
+}
+
+.img-responsive {
+    padding: 5px;
+}
+
 a, a:hover, p, h1, h2, h3, h4, h5 , h6 {
   text-decoration:none;
   color: inherit;

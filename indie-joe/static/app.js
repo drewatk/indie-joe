@@ -6,6 +6,7 @@ $(document).ready(function() {
         autoplaySpeed: 2000,
         prevArrow: false,
         nextArrow: false,
-        pauseOnFocus: true
+        pauseOnFocus: true,
+        useCSS: true
     });
 });
