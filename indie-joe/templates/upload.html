@@ -1,0 +1,103 @@
+{% extends "layout.html" %} {% block body %}
+
+<h1 class="page-header">Create A New Video</h1>
+<!-- Inline CSS based on choices in "Settings" tab -->
+<style>
+  .bootstrap-iso .formden_header h2,
+  .bootstrap-iso .formden_header p,
+  .bootstrap-iso form {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black
+  }
+
+  .bootstrap-iso form button,
+  .bootstrap-iso form button:hover {
+    color: white !important;
+  }
+
+  .asteriskField {
+    color: red;
+  }
+</style>
+
+<!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+<div class="bootstrap-iso">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <form method="post" action="{{ url_for('upload') }}">
+          <div class="form-group ">
+            <label class="control-label requiredField" for="title">
+       Video Title
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+            <input class="form-control" id="title" name="title" type="text" />
+          </div>
+          <div class="form-group ">
+            <label class="control-label " for="description">
+       Video Description
+      </label>
+            <textarea class="form-control" cols="40" id="description" name="description" rows="10"></textarea>
+          </div>
+          <div class="form-group ">
+            <label class="control-label requiredField" for="video_id">
+       Youtube Video ID
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+            <input class="form-control" id="video_id" name="video_id" type="text" />
+          </div>
+          <div class="form-group ">
+            <label class="control-label ">
+       Check all Genres that apply
+      </label>
+            <div class=" ">
+              <div class="checkbox">
+                <label class="checkbox">
+         <input name="action" type="checkbox"/>
+         Action
+        </label>
+              </div>
+              <div class="checkbox">
+                <label class="checkbox">
+         <input name="comedy" type="checkbox"/>
+         Comedy
+        </label>
+              </div>
+              <div class="checkbox">
+                <label class="checkbox">
+         <input name="drama" type="checkbox"/>
+         Drama
+        </label>
+              </div>
+              <div class="checkbox">
+                <label class="checkbox">
+         <input name="horror" type="checkbox"/>
+         Horror
+        </label>
+              </div>
+              <div class="checkbox">
+                <label class="checkbox">
+         <input name="genres" type="checkbox"/>
+         Documentary
+        </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div>
+              <!-- FIXME: Temporarily redirects to home  -->
+              <a class="btn btn-primary" href="/" name="submit" type="submit">
+        Submit
+      </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

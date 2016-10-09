@@ -27,6 +27,8 @@ a, a:hover, p, h1, h2, h3, h4, h5 , h6 {
   background-color: #F5F5F5;
 /*  margin-bottom: 20px;*/
   margin-bottom: 2vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 p {
