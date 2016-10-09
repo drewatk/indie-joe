@@ -25,7 +25,8 @@ a, a:hover, p, h1, h2, h3, h4, h5 , h6 {
 
 .search-result {
   background-color: #F5F5F5;
-  margin-bottom: 20px;
+/*  margin-bottom: 20px;*/
+  margin-bottom: 2vh;
 }
 
 p {
@@ -37,11 +38,13 @@ p {
 }
 
 .navbar {
-  min-height: 70px;
+  min-height: 60px;
 }
 
 .navbar-brand img {
-  max-height: 57px;
+  margin: 0.5vh 0 1vh 0;
+  max-height: 45px;
+/*  max-height: 57px;*/
 }
 .navbar-brand {
   padding-top: 5px;
@@ -114,5 +117,9 @@ p {
     padding-top: 10px;
     height: 50%;
     width: 75%;
-   transform: translateX(20%) translateY(0%);
+    transform: translateX(20%) translateY(0%);
+    
+    -webkit-box-shadow: 0px 9px 10px -5px rgba(51,51,51,1);
+    -moz-box-shadow: 0px 9px 10px -5px rgba(51,51,51,1);
+    box-shadow: 0px 9px 10px -5px rgba(51,51,51,1);
 }
