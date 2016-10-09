@@ -134,6 +134,11 @@ def upload():
 
     return redirect(url_for('index'))
 
+@app.route('/new-user')
+def new_user():
+    return render_template('user_input.html')
+
+
 # Database Functions
 
 def connect_db():

@@ -74,3 +74,47 @@ p {
 /*.video-row {
   max-height: 700px;
 }*/
+
+.movie-select {
+    height: 45vh;
+    width: 100%;
+}
+
+.movie-select h1 {
+    transform: translateX(0%) translateY(300%);
+}
+
+.option-select {
+    height: 35vh;
+    width: 100%;
+    
+}
+
+.option-select ul {
+    height: 100%;
+    padding: 10px;
+    transform: translateX(20%) translateY(10%);
+}
+
+.option-select ul li {
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    transform: translateX(-41%) translateY(0%);
+}
+
+.btn{
+    height: 80%;
+    width: 80%;
+    font-size: 30px;
+    background-color: #202020; 
+    transform: translateX(0%) translateY(0%);
+    border: 0px;
+}
+
+.video-row {
+    padding-top: 10px;
+    height: 50%;
+    width: 75%;
+   transform: translateX(20%) translateY(0%);
+}
