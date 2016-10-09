@@ -1,7 +1,7 @@
 {% extends "layout.html" %} {% block body %}
 <div class="container-fluid">
   <div class="row">
-    <h2 class="page-header">Editors Picks</h2>
+    <a href="/playlists/1"><h2 class="page-header">Editors Picks</h2></a>
     <div id="carousel-main" class="carousel slide col-md-6 col-md-offset-3" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -39,6 +39,7 @@
   <div class="row">
     <h2>Recommended For You</h2>
     {% for video in reccomendations %}
+    {% if loop.index <= 9 %}
     <div class="col-md-4 thumbnail-col">
       <a href="/video/{{video.id}}">
       <image class="index-thumbnail img-responsive" src="http://img.youtube.com/vi/{{ video.youtube_id }}/hqdefault.jpg" />
@@ -46,6 +47,7 @@
       <h4>{{ video.description }}</h4>
     </a>
     </div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>

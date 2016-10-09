@@ -32,7 +32,7 @@ def index():
             movie.append(field)
         movies.append(movie)
     # print movies[0]
-    user = [12 , 23, 123, 12, 120, 213]
+    user = [12 , 4, 50, 120, 76, 23]
     ra = RecommendationAlgorithm(user, movies)
 
     reccomendations = []
@@ -50,7 +50,7 @@ def index():
     if playlist:
         video_ids = playlist['list'].split(' ')
         for video_id in video_ids:
-            cur = db.execute('select * from videos where id = ?', video_id)
+            cur = db.execute('select * from videos where id = ?', [video_id])
             editors.append(cur.fetchone())
     print editors
     return render_template('index.html', reccomendations=reccomendations, editors=editors)
@@ -58,8 +58,10 @@ def index():
 @app.route('/video/<video_id>')
 def video(video_id):
     db = get_db()
-    cur = db.execute('select * from videos where id = ?', video_id)
+    cur = db.execute('select * from videos where id = ?', [video_id])
     video = cur.fetchone()
+    db.execute('update videos set views=views + 1 where id = ?', [video_id])
+    db.commit()
     return render_template('video.html', video=video)
 
 @app.route('/video/add', methods=['POST'])
@@ -80,7 +82,7 @@ def search_videos():
 @app.route('/playlists/<playlist_id>', methods=['POST', 'GET'])
 def playlists(playlist_id):
     db = get_db()
-    cur = db.execute('select * from playlists where id = ?', playlist_id)
+    cur = db.execute('select * from playlists where id = ?', [playlist_id])
 
     playlist = cur.fetchone()
     videos = []
@@ -96,6 +98,12 @@ def playlists(playlist_id):
         # TODO Return list of videos in JSON format for home page
         pass
 
+@app.route('/most-viewed')
+def most_viewed():
+    db = get_db()
+    cur = db.execute('select * from videos order by views desc')
+    videos = cur.fetchall()
+    return render_template('playlists.html', playlist={ 'title': 'Most Viewed' }, videos=videos)
 @app.route('/genre/<genre_name>')
 def genre(genre_name):
     db = get_db()

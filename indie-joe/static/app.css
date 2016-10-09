@@ -19,3 +19,16 @@ a, a:hover, p, h1, h2, h3, h4, h5 , h6 {
   text-decoration:none;
   color: inherit;
 }
+
+.search-result {
+  background-color: #F5F5F5;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.45em;
+}
+
+.navbar-inverse {
+  background-color: #3E3E3E;
+}
