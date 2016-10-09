@@ -41,7 +41,19 @@ def index():
         cur = db.execute('select * from videos where id = ?', [video_id])
         video = cur.fetchone()
         reccomendations.append(video)
-    return render_template('index.html', reccomendations=reccomendations)
+
+    # getting editors picks
+    cur = db.execute('select * from playlists where id = 1')
+
+    playlist = cur.fetchone()
+    editors = []
+    if playlist:
+        video_ids = playlist['list'].split(' ')
+        for video_id in video_ids:
+            cur = db.execute('select * from videos where id = ?', video_id)
+            editors.append(cur.fetchone())
+    print editors
+    return render_template('index.html', reccomendations=reccomendations, editors=editors)
 
 @app.route('/video/<video_id>')
 def video(video_id):

@@ -12,18 +12,16 @@
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="http://img.youtube.com/vi/MMInxg1Omv4/hqdefault.jpg" alt="...">
+        {% for video in editors %}
+        <div class="item {% if loop.index == 1 %}active{% endif %}">
+          <a href="/video/{{video.id}}">
+          <img src="http://img.youtube.com/vi/{{ video.youtube_id }}/hqdefault.jpg">
           <div class="carousel-caption">
-            Caption1
+            {{ video.title }}
           </div>
+          </a>
         </div>
-        <div class="item">
-          <img src="http://img.youtube.com/vi/MMInxg1Omv4/hqdefault.jpg" alt="...">
-          <div class="carousel-caption">
-            Caption2
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <!-- Controls -->
@@ -42,9 +40,11 @@
     <h2>Recommended For You</h2>
     {% for video in reccomendations %}
     <div class="col-md-4 thumbnail-col">
+      <a href="/video/{{video.id}}">
       <image class="index-thumbnail img-responsive" src="http://img.youtube.com/vi/{{ video.youtube_id }}/hqdefault.jpg" />
       <h3>{{ video.title }}</h3>
       <h4>{{ video.description }}</h4>
+    </a>
     </div>
     {% endfor %}
   </div>
