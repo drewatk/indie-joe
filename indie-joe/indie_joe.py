@@ -35,16 +35,19 @@ def index():
     user = [12 , 23, 123, 12, 120, 213]
     ra = RecommendationAlgorithm(user, movies)
 
+    reccomendations = []
     for x in ra.recalgo():
-        print x
-    return render_template('index.html')
+        video_id = x[0]
+        cur = db.execute('select * from videos where id = ?', [video_id])
+        video = cur.fetchone()
+        reccomendations.append(video)
+    return render_template('index.html', reccomendations=reccomendations)
 
 @app.route('/video/<video_id>')
 def video(video_id):
     db = get_db()
     cur = db.execute('select * from videos where id = ?', video_id)
     video = cur.fetchone()
-    print video
     return render_template('video.html', video=video)
 
 @app.route('/video/add', methods=['POST'])

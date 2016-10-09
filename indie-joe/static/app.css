@@ -1,0 +1,16 @@
+.carousel-inner img {
+  height: 500px !important;
+  vertical-align: center;
+}
+
+.col-md-4 {
+  padding-bottom: 20px;
+}
+
+.col-md-4 img {
+  margin-top: 15px;
+}
+
+.col-md-4 h4 {
+  max-height: 15px;
+}
