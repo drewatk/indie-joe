@@ -26,6 +26,8 @@ a, a:hover, p, h1, h2, h3, h4, h5 , h6 {
 .search-result {
   background-color: #F5F5F5;
   margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 p {

@@ -52,7 +52,7 @@ def index():
         for video_id in video_ids:
             cur = db.execute('select * from videos where id = ?', [video_id])
             editors.append(cur.fetchone())
-    print editors
+    # print editors
     return render_template('index.html', reccomendations=reccomendations, editors=editors)
 
 @app.route('/video/<video_id>')
@@ -94,9 +94,6 @@ def playlists(playlist_id):
 
     if request.method == 'GET':
         return render_template('playlists.html', playlist=playlist, videos=videos)
-    else:
-        # TODO Return list of videos in JSON format for home page
-        pass
 
 @app.route('/most-viewed')
 def most_viewed():
@@ -110,9 +107,32 @@ def genre(genre_name):
     # this is certanly the wrong way to do it and probably introduces a SQL injection flaw
     cur = db.execute('select * from videos where ' +  genre_name + ' = 1')
     videos = cur.fetchall()
-    print videos
+    # print videos
     return render_template('playlists.html', playlist={ 'title':genre_name }, videos=videos)
 
+@app.route('/upload', methods=['GET','POST'])
+def upload():
+
+    if request.method == 'GET':
+        return render_template('upload.html')
+
+    # TODO: Make this work
+
+    title = request.form['title']
+    description = request.form['description']
+    youtube_id = request.form['video_id']
+
+    action = 1 if request.form['action'] else 0
+    comedy = 1 if request.form['comedy'] else 0
+    drama = 1 if request.form['drama'] else 0
+    horror = 1 if request.form['horror'] else 0
+    documentary = 1 if request.form['documentary'] else 0
+
+    db = get_db()
+    db.execute('insert into videos values (title, description, youtube_id, action, comedy, drama, horror, documentary) values (? , ? , ? , ?, ? ,? , ?, ?)', [title, description, youtube_id, action, comedy, drama, horror, documentary]);
+    db.commit()
+
+    return redirect(url_for('index'))
 
 # Database Functions
 
