@@ -32,3 +32,19 @@ p {
 .navbar-inverse {
   background-color: #3E3E3E;
 }
+
+.navbar {
+  min-height: 70px;
+}
+
+.navbar-brand img {
+  max-height: 57px;
+}
+.navbar-brand {
+  padding-top: 5px;
+  padding-bottom: 3px;
+  padding-right: 5px;
+}
+.navbar-form {
+  padding-top: 8px;
+}
