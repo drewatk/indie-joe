@@ -14,6 +14,9 @@
   <link href="{{ url_for('static', filename='dashboard.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" type="text/css">
 
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -28,11 +31,11 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
         <img alt="IndieJoe" src="{{ url_for('static', filename='IndieJoe.png')}}" />
       </a>
         <form action="/search" method="GET" class="navbar-form navbar-left">
-          <input tid="search" name="query" type="text" class="form-control" placeholder="Search...">
+          <input id="search" name="query" type="text" class="form-control" placeholder="Press Enter to Search...">
         </form>
       </div>
       <div id="navbar">
@@ -75,6 +78,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+
 </body>
 
 </html>
