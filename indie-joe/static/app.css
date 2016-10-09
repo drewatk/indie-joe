@@ -72,3 +72,39 @@ p {
 /*.video-row {
   max-height: 700px;
 }*/
+
+.movie-select {
+    height: 45vh;
+    width: 100%;
+}
+
+.movie-select h1 {
+    transform: translateX(0%) translateY(300%);
+}
+
+.option-select {
+    height: 35vh;
+    width: 100%;
+    
+}
+
+.option-select ul {
+    height: 100%;
+    padding: 10px;
+    transform: translateX(20%) translateY(10%);
+}
+
+.option-select ul li {
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    transform: translateX(-41%) translateY(0%);
+}
+
+.btn{
+    height: 100%;
+    width: 100%;
+    font-size: 30px;
+    transform: translateX(0%) translateY(0%);
+    border: 0px;
+}

@@ -113,6 +113,10 @@ def genre(genre_name):
     print videos
     return render_template('playlists.html', playlist={ 'title':genre_name }, videos=videos)
 
+@app.route('/new-user')
+def new_user():
+    return render_template('user_input.html')
+
 
 # Database Functions
 
